@@ -12,7 +12,7 @@ const Header = ({ title }) => {
   );
 };
 
-// Set DefaultProps
+// Set default props
 Header.defaultProps = {
   title: "Task Tracker"
 };
