@@ -8,10 +8,12 @@ const Button = ({ color, onClick, text }) => {
   );
 };
 
+// Set default props
 Button.defaultProps = {
   color: "steelblue"
 };
 
+// Set PropTypes
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
