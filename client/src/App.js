@@ -1,17 +1,48 @@
+import React from "react";
+import ChildList from "./components/ChildList";
 import Header from "./components/Header";
+import ChoreForm from "./components/ChoreForm";
 
 function App() {
-  const testArr = ["Courtney", "Gisenia", 2, 3, 9, "CJ", "Cams", "Squish"];
-  // Event handler for adding a task
-  const addTask = (e) => {
-    console.log(e.target.value);
-    testArr.splice(0, testArr.length, "Mom & Dad", "Courtney", "Cams", "Cayden");
-    console.log(testArr);
+  // Temporary data
+  let currentDate = new Date(Date.now());
+  let currentHour = currentDate.getHours();
+  let currentMinute = currentDate.getMinutes();
+  let childList = [
+    {
+      name: "Courtney",
+      age: 6,
+      imgSrc: "",
+      chores: ["Homework/Spanish", "Put away toys", "Eat dinner", "Bath time", "Put on pajamas", "Put away dirty clothes", "Potty time", "Brush teeth", "Choose bedtime story", "Bedtime"]
+    },
+    {
+      name: "Cameron",
+      imgSrc: "",
+      age: 3,
+      chores: ["Practice Spanish", "Put away toys", "Eat dinner", "Bath time", "Put on pajamas", "Put away dirty clothes", "Potty time", "Brush teeth", "Choose bedtime story", "Bedtime"]
+    },
+    {
+      name: "Cayden",
+      imgSrc: "",
+      age: 1,
+      chores: ["Put away toys", "Eat dinner", "Bath time", "Put on pajamas", "Put away dirty clothes", "Potty time", "Brush teeth", "Choose bedtime story", "Bedtime"]
+    }
+  ];
+
+  const onClick = () => {
+    console.log(`Current Date: ${currentDate}\nCurrent Hour: ${currentHour}\nCurrent Minute: ${currentMinute}`);
   };
+
+  const handleChange = (e) => {
+    console.log("Input field was changed.");
+  };
+
   return (
-    <div className="container">
-      <Header onClick={addTask} />
-    </div>
+    <section className="container">
+      <Header className="header" title="Rewards Tracker" />
+      <ChildList childList={childList} />
+      <ChoreForm handleChange={handleChange} onClick={onClick} />
+    </section>
   );
 }
 
