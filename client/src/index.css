@@ -1,21 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Poppins&family=Butterfly+Kids&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Poppins&family=Indie+Flower&display=swap");
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  font-family: "Architects Daughter", "Butterfly Kids", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif, cursive;
+  font-family: "Architects Daughter", "Butterfly Kids", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, cursive;
   font-weight: 400px;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
 }
 
-/* p {
-  font-family: "Butterfly Kids";
-  letter-spacing: -0.01em;
-} */
+#current-timestamp {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 48px;
+}
 
 .btn {
   background: #000000;
@@ -43,91 +47,6 @@
   width: 100%;
 }
 
-.child-item--age {
-  font-size: 24px;
-  line-height: 32px;
-}
-
-.child-item--avatar {
-  border-radius: 32px;
-  height: auto !important;
-  width: 100px;
-}
-
-.child-item--label {
-  font-family: "Poppins";
-  font-size: 18px;
-  line-height: 24px;
-}
-
-.child-item--name {
-  font-family: "Architects Daughter";
-  font-size: 32px;
-  line-height: 40px;
-  padding: 8px 0;
-}
-
-.chores--list {
-  margin: 16px 0;
-}
-
-.chores--list-item {
-  font-size: 20px;
-  line-height: 28px;
-  padding: 4px 0;
-}
-
-.chores--list-item:hover {
-  cursor: pointer;
-}
-
-.chores--list-item.checked {
-  text-decoration: line-through;
-}
-
-.container {
-  align-items: center;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  margin: 30px auto;
-  min-height: 300px;
-  overflow: auto;
-  padding: 30px;
-}
-
-.container--child-list {
-  display: flex;
-  flex-flow: row;
-}
-
-.container--child-item {
-  border: 2px dashed slategrey;
-  border-radius: 16px;
-  align-items: center;
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  margin: 0 45px;
-  padding: 16px 42px;
-  width: fit-content;
-}
-
-.container--chore-form {
-  margin: 32px 0 16px;
-}
-
-.container--input {
-  margin: 32px 0 16px;
-}
-
-.header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
 .task {
   background: #f4f4f4;
   margin: 5px;
@@ -143,44 +62,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.add-form {
-  margin-bottom: 40px;
-}
-
-.form-control {
-  margin: 20px 0;
-}
-
-.form-control label {
-  display: block;
-}
-
-.form-control input {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-control-check label {
-  flex: 1;
-}
-
-.form-control-check input {
-  flex: 2;
-  height: 20px;
-}
-
-footer {
-  margin-top: 30px;
-  text-align: center;
 }
