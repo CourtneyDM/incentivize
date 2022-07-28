@@ -2,12 +2,27 @@ import React from "react";
 import Section from "./components/UI/Section";
 import ChildList from "./components/Child/ChildList";
 import Header from "./components/UI/Header";
+import Time from "./components/Calendar/CurrentTime";
 import ChoreForm from "./components/Form/ChoreForm";
 
 const App = () => {
+  // const currentDate = Date.now();
+  const currentTime = "";
+
+  // const currentHour = currentDate.getHours();
+  // const currentMinute = currentDate.getMinutes();
+  // const currentSecond = currentDate.getSeconds();
+
+  // const currentTime = `${currentHour}:${currentMinute}:${currentSecond}`;
+  // const [date, setDate] = useState(currentDate);
   // Temporary data
-  let currentDate = new Date(Date.now());
-  let currentHour, currentMinute, currentSecond;
+  // let currentDate = new Date(Date.now());
+  // let currentHour, currentMinute, currentSecond;
+  // const setCurrentTime = () => {
+  //   currentHour = currentDate.getHours();
+  //   currentMinute = currentDate.getMinutes();
+  //   currentSecond = currentDate.getSeconds();
+  // };
 
   let childList = [
     {
@@ -69,13 +84,7 @@ const App = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(`Current Date: ${currentDate}\nCurrent Hour: ${currentHour}\nCurrent Minute: ${currentMinute}`);
-  };
-
-  const setCurrentTime = () => {
-    currentHour = currentDate.getHours();
-    currentMinute = currentDate.getMinutes();
-    currentSecond = currentDate.getSeconds();
+    // console.log(`Current Date: ${currentDate}\nCurrent Hour: ${currentHour}\nCurrent Minute: ${currentMinute}`);
   };
 
   // Event handler for toggling chores when completed
@@ -86,13 +95,11 @@ const App = () => {
     chore.classList.contains("checked") ? chore.classList.remove("checked") : chore.classList.add("checked");
   };
 
-  setCurrentTime();
+  // setCurrentTime();
 
   return (
     <Section className="container" id="page--container">
-      <p id="current-timestamp">
-        Current Time: {currentHour}:{currentMinute}:{currentSecond} <span id="time-icon">icon goes here</span>
-      </p>
+      <Time currentTime={currentTime} />
       <Header className="header" title="Rewards Tracker" />
       <ChildList childList={childList} toggleChore={toggleChore} />
       <ChoreForm handleChange={handleChange} handleButtonClick={handleFormSubmit} />
