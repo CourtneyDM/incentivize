@@ -6,6 +6,7 @@ import Time from "./components/Calendar/CurrentTime";
 import ChoreForm from "./components/Form/ChoreForm";
 
 const App = () => {
+  // Adding comment for branch testing
   // const currentDate = Date.now();
   const currentTime = "";
 
