@@ -13,9 +13,14 @@
 }
 
 #current-timestamp {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  border: 1px dotted blue;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+#current-timestamp--date,
+#current-timestamp--time {
   font-size: 32px;
   font-weight: 400;
   line-height: 48px;
