@@ -11,6 +11,10 @@ const ChoreList = ({ chores, toggleChore }) => {
   );
 };
 
+ChoreList.defaultProps = {
+  chores: []
+};
+
 ChoreList.propTypes = {
   chores: PropTypes.array.isRequired
 };
