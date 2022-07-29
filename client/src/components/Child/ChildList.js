@@ -4,7 +4,15 @@ import ChildListItem from "./ChildListItem";
 import Card from "../UI/Card";
 import "./ChildList.css";
 
-const ChildList = ({ childList, toggleChore }) => {
+const ChildList = ({ childList, meridian }) => {
+  // Event handler for toggling chores when completed
+  const toggleChore = (event) => {
+    let chore = event.target;
+    // console.log(chore.classList);
+
+    chore.classList.contains("checked") ? chore.classList.remove("checked") : chore.classList.add("checked");
+  };
+
   return (
     <div className="container--child-list">
       {childList.map((child, index) => {
@@ -15,7 +23,7 @@ const ChildList = ({ childList, toggleChore }) => {
               age={child.age}
               imgSrc={child.imgSrc}
               imgAlt="Avatar"
-              chores={child.chores}
+              chores={meridian.toLowerCase() === "a.m." ? child.chores.morning : child.chores.evening}
               toggleChore={toggleChore}
             />
           </Card>
