@@ -1,12 +1,33 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import ChildList from "../Child/ChildList";
+import CurrentDate from "./CurrentDate";
+
+import "./Calendar.css";
 
 const Time = ({ childList }) => {
-  // Get current date
-  const now = new Date(Date.now());
+  // Format time to use 12-hours instead of 24, and to have leading zeros before minutes and seconds
+  const formatTime = (identifier, entry, num) => {
+    const timeEl = identifier === "hour" ? (entry <= num ? entry : entry - num) : entry < num ? entry.toString().padStart(2, "0") : entry.toString();
+    return timeEl;
+  };
 
-  // Set meridian to A.M. or P.M. depending on the current hour
-  const meridian = now.getHours() < 12 ? "A.M." : "P.M.";
+  // Initialize date variable for initial state
+  let now = new Date(Date.now());
+
+  // Initialize time object for initial state
+  const currentTime = {
+    hour: formatTime("hour", now.getHours(), 12),
+    minute: formatTime("minute", now.getMinutes(), 10),
+    second: formatTime("second", now.getSeconds(), 10),
+    meridian: now.getHours() < 12 ? "A.M." : "P.M."
+  };
+
+  // State management for current time
+  const [meridian, setMeridian] = useState(currentTime.meridian);
+  const [hour, setHour] = useState(currentTime.hour);
+  const [minute, setMinute] = useState(currentTime.minute);
+  const [second, setSecond] = useState(currentTime.second);
 
   // Get the current Date object
   const getCurrentDate = () => {
@@ -16,93 +37,36 @@ const Time = ({ childList }) => {
     });
   };
 
-  // Current date object
-  const currentDate = {
-    date: null,
-    day: null,
-    month: null,
-    year: null
-  };
-
-  // Current time object
-  const currentTime = {
-    hour: null,
-    minute: null,
-    second: null
-  };
-
-  // State management for current time
-  // const [time, setTime] = useState(`${now.getHours() < 12 ? now.getHours() : now.getHours()}:${now.getMinutes()}:${now.getSeconds()} ${meridian}`);
-  const [time, setTime] = useState(`Getting current time...`);
-
-  // State management for current date
-  const [date, setDate] = useState(`${currentDate.day} ${currentDate.month} ${currentDate.date}, ${currentDate.year}`);
-
-  // Set current date
-  async function setCurrentDate() {
-    const today = await getCurrentDate();
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    // Set day of the week
-    currentDate.day = daysOfWeek[today.getDay()];
-
-    // Set date
-    currentDate.date = today.getDate();
-
-    // Set month
-    currentDate.month = months[today.getMonth()];
-
-    // Set current year
-    currentDate.year = today.getFullYear();
-
-    // Update state for date
-    setDate(`${currentDate.day}, ${currentDate.month} ${currentDate.date}, ${currentDate.year}`);
-  }
-
   // Set current time
   async function setCurrentTime() {
-    const today = await getCurrentDate();
+    // Declare new Date object
+    now = await getCurrentDate();
 
     // Set hour
-    currentTime.hour = today.getHours() < 12 ? (today.getHours() === 0 ? setCurrentDate() : today.getHours()) : today.getHours() - 12;
+    setHour((currentTime.hour = formatTime("hour", now.getHours(), 12)));
 
     // Set minute
-    currentTime.minute =
-      today.getMinutes() < 10
-        ? today
-            .getMinutes()
-            .toString()
-            .padStart(2, "0")
-        : today.getMinutes().toString();
+    setMinute((currentTime.minute = formatTime("minute", now.getMinutes(), 10)));
 
     // Set second
-    currentTime.second =
-      today.getSeconds() < 10
-        ? today
-            .getSeconds()
-            .toString()
-            .padStart(2, "0")
-        : today.getSeconds().toString();
+    setSecond((currentTime.second = formatTime("second", now.getSeconds(), 10)));
 
-    // Update state for time
-    setTime(`${currentTime.hour}:${currentTime.minute}:${currentTime.second} ${meridian}`);
+    // Set meridian
+    now.getHours() < 12 ? setMeridian("A.M.") : setMeridian("P.M.");
   }
 
   // Get the current time every second
   setInterval(setCurrentTime, 1000);
 
-  // Get the current
-  setCurrentDate();
-
   return (
     <>
       <div id="current-timestamp">
-        <p id="timestamp--date">
-          Current Date: <span id="current-date">{date}</span>
-        </p>
-        <p id="timestamp--time">
-          Current Time: <span id="current-time">{time}</span>
+        <CurrentDate getCurrentDate={getCurrentDate} />
+        <p className="timestamp">
+          <span className="timestamp--info">{hour}:</span>
+          <span className="timestamp--info">{minute}:</span>
+          <span className="timestamp--info">{second}</span>
+          <span className="timestamp--info">&nbsp;{meridian}</span>
         </p>
       </div>
       <ChildList childList={childList} meridian={meridian} />
@@ -110,12 +74,19 @@ const Time = ({ childList }) => {
   );
 };
 
+// Set default properties
 Time.defaultProps = {
   currentTime: {
     hour: 0,
     minute: 0,
-    second: 0
+    second: 0,
+    meridian: "A.M."
   }
+};
+
+// Define property types
+Time.propTypes = {
+  currentTime: PropTypes.object.isRequired
 };
 
 export default Time;
