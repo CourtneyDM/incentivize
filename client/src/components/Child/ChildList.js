@@ -8,8 +8,6 @@ const ChildList = ({ childList, meridian }) => {
   // Event handler for toggling chores when completed
   const toggleChore = (event) => {
     let chore = event.target;
-    // console.log(chore.classList);
-
     chore.classList.contains("checked") ? chore.classList.remove("checked") : chore.classList.add("checked");
   };
 
