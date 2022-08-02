@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap");
+
+#current-timestamp {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  margin: 8px auto 32px;
+  width: fit-content;
+}
+
+.timestamp--info {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 48px;
+}
