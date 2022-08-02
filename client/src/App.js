@@ -5,6 +5,8 @@ import Time from "./components/Calendar/CurrentTime";
 import ChoreForm from "./components/Form/ChoreForm";
 
 const App = () => {
+  // Initialize new Date object
+  let now = new Date(Date.now());
   // Temporary data
   let childList = [
     {
@@ -48,8 +50,7 @@ const App = () => {
   return (
     <Section className="container" id="page--container">
       <Header className="header" title="Rewards Tracker" />
-      <Time childList={childList} />
-      {/* <ChildList childList={childList} toggleChore={toggleChore} /> */}
+      <Time childList={childList} now={now} />
       <ChoreForm handleChange={handleChange} handleButtonClick={handleFormSubmit} />
     </Section>
   );

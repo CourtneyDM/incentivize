@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const CurrentDate = ({ getCurrentDate }) => {
-  // Initialize date variable for initial state
-  const now = new Date(Date.now());
-
+const CurrentDate = ({ getCurrentDate, now }) => {
   // Initialize time object for initial state
   const currentDate = {
     date: now.getDate(),

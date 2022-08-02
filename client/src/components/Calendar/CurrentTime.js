@@ -5,15 +5,12 @@ import CurrentDate from "./CurrentDate";
 
 import "./Calendar.css";
 
-const Time = ({ childList }) => {
+const Time = ({ childList, now }) => {
   // Format time to use 12-hours instead of 24, and to have leading zeros before minutes and seconds
   const formatTime = (identifier, entry, num) => {
     const timeEl = identifier === "hour" ? (entry <= num ? entry : entry - num) : entry < num ? entry.toString().padStart(2, "0") : entry.toString();
     return timeEl;
   };
-
-  // Initialize date variable for initial state
-  let now = new Date(Date.now());
 
   // Initialize time object for initial state
   const currentTime = {
@@ -61,7 +58,7 @@ const Time = ({ childList }) => {
   return (
     <>
       <div id="current-timestamp">
-        <CurrentDate getCurrentDate={getCurrentDate} />
+        <CurrentDate getCurrentDate={getCurrentDate} now={now} />
         <p className="timestamp">
           <span className="timestamp--info">{hour}:</span>
           <span className="timestamp--info">{minute}:</span>
