@@ -3,6 +3,7 @@ import Section from "./components/UI/Section";
 import Header from "./components/UI/Header";
 import Time from "./components/Calendar/CurrentTime";
 import ChoreForm from "./components/Form/ChoreForm";
+import NewChild from "./components/Child/NewChild";
 
 const App = () => {
   // Initialize new Date object
@@ -38,20 +39,12 @@ const App = () => {
     }
   ];
 
-  // Event handler for input field change
-  const handleChange = (e) => {
-    console.log("Input field was changed.");
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <Section className="container" id="page--container">
       <Header className="header" title="Rewards Tracker" />
       <Time childList={childList} now={now} />
-      <ChoreForm handleChange={handleChange} handleButtonClick={handleFormSubmit} />
+      <ChoreForm />
+      <NewChild now={now} />
     </Section>
   );
 };
