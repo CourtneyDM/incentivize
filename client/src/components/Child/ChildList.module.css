@@ -1,0 +1,77 @@
+.container--child-list {
+  display: flex;
+  flex-flow: row;
+}
+
+.child-item--chores {
+  margin: 16px 0;
+}
+
+.child-item--info {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  padding-left: 16px;
+  margin: 16px 0;
+}
+
+.child-list--item {
+  align-items: flex-start !important;
+  background: #efebd6;
+  border: 2px solid slateblue;
+  display: flex;
+  flex-flow: row !important;
+  justify-content: flex-start;
+  margin: 0 45px;
+  padding: 16px 24;
+  width: fit-content;
+}
+
+.child-item--age {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.child-item--label {
+  font-family: "Poppins";
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.child-item--name {
+  font-family: "Indie Flower";
+  font-size: 32px;
+  line-height: 40px;
+  padding: 8px 0;
+}
+
+.child-item--avatar {
+  align-items: center;
+  border-radius: 100px;
+  border: 3px solid;
+  color: #ffffff;
+  display: flex;
+  flex-flow: column;
+  font-family: "Architects Daughter", serif;
+  font-size: 64px;
+  font-weight: bold;
+  justify-content: center;
+  line-height: 56px;
+  height: 100px;
+  width: 100px;
+}
+
+.child-item--avatar .Courtney {
+  background: #bf4c4c;
+  border-color: #950a0a;
+}
+
+.child-item--avatar.Cameron {
+  background: #b8b83d;
+  border-color: #7e7e11;
+}
+
+.child-item--avatar.Cayden {
+  background: #2da59b;
+  border-color: #043c37;
+}
