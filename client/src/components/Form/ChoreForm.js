@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 // import Input from "./Input";
 import Button from "./Button";
-import "./Form.css";
+import styles from "./Form.module.css";
 
 const ChoreForm = ({ handleChange }) => {
   // Initialize state for input field
@@ -65,13 +65,13 @@ const ChoreForm = ({ handleChange }) => {
   };
 
   return (
-    <form className="form--chore" onSubmit={onFormSubmit}>
-      <div className="new-chore--controls">
-        <div className="new-chore--control">
+    <form className={`${styles["form--chore"]}`} onSubmit={onFormSubmit}>
+      <div className={`${styles["new-chore--controls"]}`}>
+        <div className={`${styles["new-chore--control"]}`}>
           <label htmlFor="chore">Chore description:</label>
           <input type="text" name="chore" value={enteredChore} placeholder="Enter chore description here" onChange={handleInputChange} />
         </div>
-        <div className="new-chore--control">
+        <div className={`${styles["new-chore--control"]}`}>
           <label htmlFor="child">Child</label>
           <select name="child" id="child--selector" value={childSelected} onChange={handleInputChange}>
             <option></option>
@@ -80,7 +80,7 @@ const ChoreForm = ({ handleChange }) => {
             <option value="Courtney">Courtney</option>
           </select>
         </div>
-        <div className="form--output">
+        <div className={`${styles["form--output"]}`}>
           <p>{displayChore()}</p>
         </div>
         <Button text="Create new chore" color="green" />

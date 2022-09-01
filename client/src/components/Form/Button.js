@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Form.css";
+import "./Form.module.css";
 
 const Button = ({ color, handleClick, text }) => {
   return (

@@ -1,10 +1,10 @@
 import React from "react";
-import "./Section.css";
+
+import styles from "./Section.module.css";
 
 const Section = (props) => {
-  const classes = "container--section " + props.className;
   return (
-    <section className={classes} id={props.id}>
+    <section className={`${styles["container--section"]}`} id={props.id}>
       {props.children}
     </section>
   );

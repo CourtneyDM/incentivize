@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "./Button";
-import "./Form.css";
+import styles from "./Form.module.css";
 
 const Input = ({ handleChange, inputName, inputType, labelName, onClick }) => {
   return (
     <>
-      <div className="container--input">
+      <div className={`${styles["container--input"]}`}>
         <label>{labelName}</label>:&nbsp;
         <input type={inputType} name={inputName} onChange={handleChange} />
       </div>

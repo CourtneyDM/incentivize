@@ -3,14 +3,22 @@ import PropTypes from "prop-types";
 import Moment from "moment";
 import Button from "../Form/Button";
 
+import styles from "./ChildList.module.css";
+
+const initialChild = {
+  age: "",
+  birthDate: "",
+  name: "",
+  hobby: "",
+  hobbies: []
+};
+
 const NewChild = ({ now }) => {
-  let hobbyList = [];
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [age, setAge] = useState("");
-  const [hobby, setHobby] = useState("");
-  const [hobbies, setHobbies] = useState([hobby]);
+  const [firstName, setFirstName] = useState(initialChild.name);
+  const [birthdate, setBirthdate] = useState(initialChild.birthDate);
+  const [age, setAge] = useState(initialChild.age);
+  const [hobby, setHobby] = useState(initialChild.hobby);
+  const [hobbies, setHobbies] = useState(initialChild.hobbies);
 
   // Calculate child age to display on screen
   function calculateAge(date) {
@@ -22,22 +30,36 @@ const NewChild = ({ now }) => {
     const duration = Moment.duration(today.diff(birthday));
 
     // Set age based on duration data
-    setBirthdate(date);
     setAge(`${duration._data.years} years, ${duration._data.months} months`);
   }
 
-  // Add hobby to the hobbies array
-  const addNewHobby = (e, hobby) => {
+  // Add new hobby
+  const addNewHobby = (e) => {
     e.preventDefault();
-    console.log(e);
+    setHobbies((prevHobbies) => {
+      return [...prevHobbies, hobby];
+    });
+    setHobby("");
   };
 
-  // Event handler for input fields
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  // Event handler for birthday input field
+  const handleBirthdateInput = (e) => {
+    const { value } = e.target;
+    // console.log(value);
+    calculateAge(value);
+    setBirthdate(value);
+  };
 
-    // Set state according to the changed input field
-    name === "firstName" ? setFirstName(value) : name === "lastName" ? setLastName(value) : name === "birthdate" ? calculateAge(value) : setHobby(value);
+  // Event handler for first name input field
+  const handleNameInput = (e) => {
+    const { value } = e.target;
+    setFirstName(value);
+  };
+
+  // Event handler for hobby input field
+  const handleHobbyInput = (e) => {
+    const { value } = e.target;
+    setHobby(value);
   };
 
   // Event handler for form submission
@@ -47,59 +69,62 @@ const NewChild = ({ now }) => {
     // Create new child object with details from the form
     const newChild = {
       firstName,
-      lastName,
       birthdate,
       age,
       hobbies
     };
     console.log(newChild);
+
+    // Clear form fields
+    setFirstName(initialChild.name);
+    setBirthdate(initialChild.birthDate);
+    setAge(initialChild.age);
+    setHobby(initialChild.hobby);
+    setHobbies(initialChild.hobbies);
   };
 
   return (
-    <form action="PUT" className="form--child" onSubmit={onFormSubmit}>
-      <div className="new-child--info">
-        <div className="new-child--firstName">
+    <form action="PUT" className={`${styles["form--child"]}`} onSubmit={onFormSubmit}>
+      <div className={`${styles["new-child--info"]}`}>
+        <div className={`${styles["new-child--firstName"]}`}>
           <label htmlFor="firstName">Name:</label>
-          <input type="text" name="firstName" value={firstName} placeholder="Enter child's first name" onChange={handleInputChange} />
+          <input type="text" name="firstName" value={firstName} placeholder="Enter child's first name" onChange={handleNameInput} />
         </div>
-        <div className="new-child--lastName">
-          <label htmlFor="lastName">Name:</label>
-          <input type="text" name="lastName" value={lastName} placeholder="Enter child's last name" onChange={handleInputChange} />
-        </div>
-        <div className="new-child--birthday">
+        <div className={`${styles["new-child--birthday"]}`}>
           <label htmlFor="birthdate">Birthday</label>
-          <input type="date" name="birthdate" value={birthdate} onChange={handleInputChange} />
+          <input type="date" name="birthdate" value={birthdate} onChange={handleBirthdateInput} />
         </div>
-        <div className="new-child--hobbies">
+        <div className={`${styles["new-child--hobbies"]}`}>
           <label htmlFor="hobby">Child hobbies</label>
-          <input type="text" name="hobby" value={hobby} onChange={handleInputChange} />
-          <Button text="Add hobby" color={"orange"} handleClick={addNewHobby} />
+          <input type="text" name="hobby" value={hobby} onChange={handleHobbyInput} />
+          <Button text="Add hobby" type="button" color={"orange"} handleClick={addNewHobby} />
         </div>
-        <div className="new-child--age">
+        <div className={`${styles["new-child--age"]}`}>
           <p>{age}</p>
         </div>
       </div>
       <Button text="Add child" color={"blue"} />
-      <p>Hobbies: {hobbies}</p>
+      {hobbies.map((item, index) => {
+        return <p key={index}>{item}</p>;
+      })}
     </form>
   );
 };
 
 NewChild.defaultProps = {
-  firstName: "",
-  lastName: "",
-  birthdate: "",
-  age: ""
+  firstName: initialChild.name,
+  birthdate: initialChild.birthDate,
+  age: initialChild.age,
+  hobby: initialChild.hobby,
+  hobbies: initialChild.hobbies
 };
 
 NewChild.propTypes = {
   firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
   birthdate: PropTypes.string.isRequired,
   age: PropTypes.string.isRequired,
-  hobbies: PropTypes.array
+  hobby: PropTypes.string.isRequired,
+  hobbies: PropTypes.array.isRequired
 };
 
 export default NewChild;
-
-// TODO: convert hobbies text area into an input line with a button

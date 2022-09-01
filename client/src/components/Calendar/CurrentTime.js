@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ChildList from "../Child/ChildList";
 import CurrentDate from "./CurrentDate";
 
-import "./Calendar.css";
+import styles from "./Calendar.module.css";
 
 const Time = ({ childList, now }) => {
   // Format time to use 12-hours instead of 24, and to have leading zeros before minutes and seconds
@@ -57,13 +57,13 @@ const Time = ({ childList, now }) => {
 
   return (
     <>
-      <div id="current-timestamp">
+      <div id={`${styles["current-timestamp"]}`}>
         <CurrentDate getCurrentDate={getCurrentDate} now={now} />
-        <p className="timestamp">
-          <span className="timestamp--info">{hour}:</span>
-          <span className="timestamp--info">{minute}:</span>
-          <span className="timestamp--info">{second}</span>
-          <span className="timestamp--info">&nbsp;{meridian}</span>
+        <p className={`${styles["timestamp"]}`}>
+          <span className={`${styles["timestamp--info"]}`}>{hour}:</span>
+          <span className={`${styles["timestamp--info"]}`}>{minute}:</span>
+          <span className={`${styles["timestamp--info"]}`}>{second}</span>
+          <span className={`${styles["timestamp--info"]}`}>&nbsp;{meridian}</span>
         </p>
       </div>
       <ChildList childList={childList} meridian={meridian} />

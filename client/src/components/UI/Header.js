@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Header.css";
+import styles from "./Header.module.css";
 
 const Header = ({ title }) => {
   return (
-    <header className="header">
+    <header className={`${styles["header"]}`}>
       <h1>{title}</h1>
     </header>
   );

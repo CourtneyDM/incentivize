@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChoreListItem from "./ChoreListItem";
-import "./ChoreList.css";
+import styles from "./ChoreList.module.css";
 
 const ChoreList = ({ chores, toggleChore }) => {
   return (
-    <div className="chores--list">
+    <div className={`${styles["chores--list"]}`}>
       <ChoreListItem chores={chores} toggleChore={toggleChore} />
     </div>
   );

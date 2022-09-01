@@ -2,18 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import ChoreList from "../Chores/ChoreList";
 
+import styles from "./ChildList.module.css";
+
 const ChildListItem = ({ age, chores, imgSrc, name, toggleChore }) => {
   return (
     <>
-      <div className="child-item--info">
-        <p className={`child-item--avatar ${name}`}>{name[0]}</p>
+      <div className={`${styles["child-item--info"]}`}>
+        <p className={`${styles["child-item--avatar"]}`}>{name[0]}</p>
         {/* <img className="child-item--avatar" alt="Avatar" src={imgSrc} /> */}
-        <p className="child-item--name"> {name} </p>
-        <p className="child-item--label">
-          Age: <span className="child-item--age">{age}</span>
+        <p className={`${styles["child-item--name"]}`}> {name} </p>
+        <p className={`${styles["child-item--label"]}`}>
+          Age: <span className={`${styles["child-item--age"]}`}>{age}</span>
         </p>
       </div>
-      <div className="child-item--chores">
+      <div className={`${styles["child-item--chores"]}`}>
         <ChoreList chores={chores} toggleChore={toggleChore} />
       </div>
     </>

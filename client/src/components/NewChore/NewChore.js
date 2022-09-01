@@ -1,11 +1,11 @@
 import React from "react";
 import Form from "../Form/ChoreForm;";
 
-import "./NewChore.css";
+import styles from "./NewChore.module.css";
 
 const NewChore = () => {
   return (
-    <div className="new-chore">
+    <div className={`${styles["new-chore"]}`}>
       <Form />
     </div>
   );

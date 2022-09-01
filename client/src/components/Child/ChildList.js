@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ChildListItem from "./ChildListItem";
 import Card from "../UI/Card";
-import "./ChildList.css";
+import styles from "./ChildList.module.css";
 
 const ChildList = ({ childList, meridian }) => {
   // Event handler for toggling chores when completed
@@ -12,10 +12,10 @@ const ChildList = ({ childList, meridian }) => {
   };
 
   return (
-    <div className="container--child-list">
+    <div className={styles["container--child-list"]}>
       {childList.map((child, index) => {
         return (
-          <Card className="child-list--item" key={index}>
+          <Card className={styles["child-list--item"]} key={index}>
             <ChildListItem
               name={child.name}
               age={child.age}
